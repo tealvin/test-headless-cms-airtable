@@ -22,7 +22,46 @@ function App() {
       });
   }, []);
 
-  return <div>App</div>;
+  const handlePostButtonClick = () => {
+    axios
+      .post(
+        `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`,
+        {
+          records: [
+            {
+              fields: {
+                id: "ppp11",
+                name: "xoppp11",
+                email: "ppp11@gmail.com",
+                phone_number: "111111",
+              },
+            },
+            {
+              fields: {
+                id: "ttttyea123",
+                name: "ttttyea123",
+                email: "ttttyea123@gmail.com",
+              },
+            },
+          ],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.status, res.data);
+      });
+  };
+
+  return (
+    <div>
+      App<button onClick={handlePostButtonClick}>Post</button>
+    </div>
+  );
 }
 
 export default App;
